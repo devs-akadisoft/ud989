@@ -1,0 +1,19 @@
+.full-view 
+{
+    float: left;
+}
+
+.list-view
+{
+    text-align: right;
+}
+
+.cat-list
+{
+    list-style-type: none;
+}
+
+.list-view  img 
+{
+    width: 36px;
+}
