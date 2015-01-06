@@ -1,0 +1,57 @@
+<!DOCType html>
+<html>
+<head>
+	<title>Cat image click counter</title>
+	<script type="text/javascript">
+		var cats = [
+			{name:'Aisho',	img:'cat1.jpg', counter:0},
+			{name:'Kosho',	img:'cat2.jpg', counter:0},
+			{name:'Ajjoo',	img:'cat3.jpg', counter:0},
+			{name:'Mimmo',	img:'cat4.jpg', counter:0},
+			{name:'Baboo',	img:'cat5.jpg', counter:0}
+		];
+		
+		function init(){
+			var list = document.getElementById("catList");
+			
+			for(var i = 0; i < cats.length; i++){
+				var cat = cats[i];
+				var li = document.createElement('li');
+				
+				var img = document.createElement('img');
+				img.src = cat.img;
+				img.setAttribute('width','36px');
+				img.setAttribute('height','36px');
+
+				li.appendChild(img);
+				
+				// Note: using closure so that the function argument does not change.
+				li.addEventListener('click',(function(copycat)
+					{
+						return function(){
+							copycat.counter++;
+							document.getElementById('catPic').src = copycat.img;
+							document.getElementById('name').textContent = copycat.name;
+							document.getElementById('counter').textContent = copycat.counter;
+						}
+					}(cat))
+				);
+				list.appendChild(li);
+			}
+		}
+	</script>
+</head>
+<body onLoad="init()">
+<div>
+	<div style="float:left;"><a href="javascript: increment(1);">
+		<img id="catPic" src="cat1.jpg"/></a><br/>
+		Name: <span id="name">Ajwa</span><br/>
+		Counter: <span id="counter">0</span>
+	</div>
+	<div style="text-align:right">
+		<ul style="list-style-type:none" id="catList">
+		</ul>
+	</div>
+</div>
+</body>
+</html>
